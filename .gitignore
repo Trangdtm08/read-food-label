@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Local secrets and environment files
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+!.env.example
+
+# Cloudflare local state and generated build output
+.wrangler/
+.cloudflare/
+
+# Build and coverage output
+dist/
+build/
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Archives created for handover
+*.zip

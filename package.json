@@ -1,0 +1,15 @@
+{
+  "name": "read-food-label",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "cf deploy",
+    "check": "wrangler types"
+  },
+  "devDependencies": {
+    "cf": "^1.0.0-beta.12",
+    "wrangler": "^4.22.0"
+  }
+}

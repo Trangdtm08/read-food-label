@@ -1,0 +1,15 @@
+name = "read-food-label"
+main = "src/index.js"
+compatibility_date = "2026-10-03"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
+
+[vars]
+LLM_MODEL = "gemini-3.8-flash-high"
+LLM_MAX_TOKENS = "3600"
+# Optional for OpenAI-compatible providers. Default is Authorization: Bearer <key>.
+LLM_API_KEY_HEADER = "authorization"
+LLM_API_KEY_PREFIX = "Bearer "

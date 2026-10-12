@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#eff6d8" />
+    <title>Đọc nhãn dễ hiểu — Food Label AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Đọc nhãn dễ hiểu - trang chủ">
+          <span class="brand-mark">✳</span><span>đọc nhãn <em>dễ hiểu</em></span>
+        </a>
+        <span class="class-pill"><span class="dot"></span> Dành cho lớp học</span>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="eyebrow">TRỢ LÝ ĐỌC NHÃN THỰC PHẨM</div>
+          <h1>Một bức ảnh.<br /><span>Hiểu ngay</span> bảng thành phần.</h1>
+          <p class="hero-copy">Chụp nhãn thực phẩm đóng gói để AI giải thích năng lượng, chất dinh dưỡng và những điều cần lưu ý — bằng ngôn ngữ dễ hiểu cho học sinh.</p>
+        </section>
+
+        <section class="workspace" aria-label="Phân tích nhãn thực phẩm">
+          <div class="upload-card" id="uploadCard">
+            <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" capture="environment" hidden />
+            <div class="upload-empty" id="uploadEmpty">
+              <div class="camera-icon">⌁</div>
+              <h2>Đưa ảnh nhãn vào đây</h2>
+              <p>Chụp rõ phần <strong>thành phần</strong> hoặc <strong>giá trị dinh dưỡng</strong></p>
+              <button class="primary-button" id="chooseButton" type="button"><span>＋</span> Chọn ảnh / mở camera</button>
+              <div class="drop-hint">JPG, PNG hoặc WebP · tối đa 10 MB</div>
+            </div>
+            <div class="upload-preview hidden" id="uploadPreview">
+              <img id="previewImage" alt="Ảnh nhãn thực phẩm đã chọn" />
+              <div class="preview-overlay"><button class="ghost-button" id="changeButton" type="button">Đổi ảnh</button></div>
+            </div>
+          </div>
+
+          <div class="how-card">
+            <div class="section-label">3 BƯỚC ĐƠN GIẢN</div>
+            <div class="steps">
+              <div class="step"><span>01</span><div><strong>Chụp nhãn</strong><p>Giữ máy thẳng, đủ sáng</p></div></div>
+              <div class="step"><span>02</span><div><strong>AI đọc hiểu</strong><p>Không chỉ đọc con số</p></div></div>
+              <div class="step"><span>03</span><div><strong>Cùng thảo luận</strong><p>Đặt câu hỏi, tự lựa chọn</p></div></div>
+            </div>
+            <div class="teacher-note"><span>✦</span><p><strong>Gợi ý cho giáo viên</strong><br />Dùng kết quả để mở đầu thảo luận về khẩu phần, đường và muối.</p></div>
+          </div>
+        </section>
+
+        <section class="result-section hidden" id="resultSection">
+          <div class="result-heading"><div><div class="eyebrow">KẾT QUẢ PHÂN TÍCH</div><h2 id="productName">Sản phẩm</h2></div><button class="text-button" id="newScanButton" type="button">↻ Đọc nhãn khác</button></div>
+          <div class="summary-card">
+            <div class="summary-main"><div class="score-ring" id="confidenceRing"><span id="confidenceValue">0%</span><small>độ rõ</small></div><div><div class="level-tag" id="levelTag">Chưa đủ dữ liệu</div><p id="summaryText"></p></div></div>
+            <div class="energy-box"><span>NĂNG LƯỢNG</span><strong id="energyValue">—</strong><p id="energyNote"></p></div>
+          </div>
+          <div class="result-grid">
+            <article class="info-card"><div class="card-title"><span class="title-icon green">↗</span><h3>Điểm đáng chú ý</h3></div><ul class="bullet-list positive" id="positivesList"></ul></article>
+            <article class="info-card"><div class="card-title"><span class="title-icon orange">!</span><h3>Cần để ý</h3></div><ul class="bullet-list caution" id="watchoutsList"></ul></article>
+          </div>
+          <article class="info-card full-card"><div class="card-title"><span class="title-icon blue">◒</span><h3>Đọc các chất dinh dưỡng</h3></div><div class="nutrient-list" id="nutrientList"></div></article>
+          <article class="info-card full-card"><div class="card-title"><span class="title-icon purple">⌁</span><h3>Thành phần & phụ gia nhìn thấy</h3></div><div class="ingredient-list" id="ingredientList"></div></article>
+          <article class="tips-card"><div class="card-title"><span class="title-icon yellow">✦</span><h3>Gợi ý lựa chọn</h3></div><ul class="tips-list" id="tipsList"></ul></article>
+          <div class="question-card"><span class="question-mark">?</span><div><div class="section-label">CÂU HỎI CHO LỚP</div><p id="studentQuestion"></p></div></div>
+          <p class="disclaimer" id="disclaimer"></p>
+        </section>
+
+        <div class="error-box hidden" id="errorBox" role="alert"><span>!</span><p id="errorText"></p><button id="dismissError" type="button">×</button></div>
+        <div class="loading-overlay hidden" id="loadingOverlay"><div class="loader"></div><strong>Đang đọc nhãn…</strong><span>AI đang tìm các con số và giải thích chúng</span></div>
+      </main>
+      <footer><span>✳ đọc nhãn dễ hiểu</span><span>Thiết kế cho việc học · Không thay thế tư vấn y tế</span></footer>
+    </div>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
